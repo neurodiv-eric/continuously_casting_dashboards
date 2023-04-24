@@ -191,17 +191,23 @@ class ContinuouslyCastingDashboards:
             _LOGGER.debug("Executing stop command...")
             await asyncio.wait_for(process.wait(), timeout=10)
 
-            process = await asyncio.create_subprocess_exec("catt", "-d", device_name, "volume", "0")
-            _LOGGER.debug("Setting volume to 0...")
+            #process = await asyncio.create_subprocess_exec("catt", "-d", device_name, "volume", "0")
+            #_LOGGER.debug("Setting volume to 0...")
+            process = await asyncio.create_subprocess_exec("catt", "-d", device_name, "volumemute", "true")
+            _LOGGER.debug("Muting volume...")
             await asyncio.wait_for(process.wait(), timeout=10)
 
             process = await asyncio.create_subprocess_exec("catt", "-d", device_name, "cast_site", dashboard_url)
             _LOGGER.info("Executing the dashboard cast command...")
             await asyncio.wait_for(process.wait(), timeout=10)
 
-            process = await asyncio.create_subprocess_exec("catt", "-d", device_name, "volume", "50")
-            _LOGGER.info("Setting volume back to 5...")
+            #process = await asyncio.create_subprocess_exec("catt", "-d", device_name, "volume", "50")
+            #_LOGGER.info("Setting volume back to 5...")
+
+            process = await asyncio.create_subprocess_exec("catt", "-d", device_name, "volumemute", "false")
+            _LOGGER.debug("Unmuting volume...")
             await asyncio.wait_for(process.wait(), timeout=10)
+            
         except subprocess.CalledProcessError as e:
             _LOGGER.error(f"Error casting dashboard to {device_name}: {e}")
             return None

@@ -2,8 +2,8 @@
     "domain": "continuously_casting_dashboards",
     "name": "Continuously Cast Dashboards",
     "documentation": "https://github.com/b0mbays/continuously_casting_dashboards",
-    "requirements": ["PyYAML==6.0", "catt==0.12.10"],
-    "version": "1.1.4",
+    "requirements": ["PyYAML==6.0", "catt @ git+https://github.com/neurodiv-eric/catt@add-mute-command"],
+    "version": "1.1.5",
     "dependencies": [],
-    "codeowners": ["@b0mbays"]
+    "codeowners": ["@b0mbays", "@neurodiv-eric"]
   }
